@@ -16,7 +16,7 @@ export default function AdminOrdersPage() {
     <div className="min-h-screen bg-[#FAFAFA] flex">
       <AdminSidebar />
       
-      <main className="flex-1 ml-64 p-8 xl:p-12 h-screen overflow-y-auto">
+      <main className="flex-1 ml-64 p-6 xl:p-8 h-screen overflow-y-auto">
         <div className="max-w-6xl mx-auto">
           
           <header className="mb-12">

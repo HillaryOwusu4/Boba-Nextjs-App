@@ -23,13 +23,12 @@ export default function ActionGroup({ isDarkBackground, isOpen }: { isDarkBackgr
         )}
       </button>
 
-      <Button variant="primary" className='p-2 hidden sm:flex'>Book Now</Button>
       <Button 
         variant="secondary" 
         className={secondaryBorderOutline}
-        icon="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=200&h=200&fit=crop&q=80"
+        icon="https://images.unsplash.com/photo-1541604193435-2253a3a7028e?w=200&h=200&fit=crop&q=80"
       >
-        Build Your Van
+        Login
       </Button>
     </div>
   );

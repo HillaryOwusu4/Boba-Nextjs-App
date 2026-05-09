@@ -4,15 +4,36 @@ import { useState, useRef } from 'react';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import { DRINKS } from '@/data/drinks';
 import { Plus, X, LayoutGrid, Image as ImageIcon, Camera } from 'lucide-react';
+import AdminDropdown from '@/components/admin/AdminDropdown';
 
 export default function CollectionsManagementPage() {
+  const productOptions = DRINKS.map(drink => ({ label: drink.title, value: drink.id }));
+  
   // Extract unique categories from DRINKS data
   const categories = Array.from(new Set(DRINKS.map(d => d.category)));
   
   const [showAdd, setShowAdd] = useState(false);
+  const [editingCollection, setEditingCollection] = useState<string | null>(null);
+  const [collectionTitle, setCollectionTitle] = useState('');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedProducts, setSelectedProducts] = useState<number[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleManageItems = (categoryName: string) => {
+    const itemsInCat = DRINKS.filter(d => d.category === categoryName).map(d => d.id);
+    setEditingCollection(categoryName);
+    setCollectionTitle(categoryName);
+    setSelectedProducts(itemsInCat);
+    setShowAdd(true);
+  };
+
+  const handleClose = () => {
+    setShowAdd(false);
+    setEditingCollection(null);
+    setCollectionTitle('');
+    setSelectedProducts([]);
+    setImagePreview(null);
+  };
 
   const toggleProduct = (id: number) => {
     setSelectedProducts(prev => 
@@ -45,7 +66,7 @@ export default function CollectionsManagementPage() {
             </div>
             
             <button 
-              onClick={() => { setShowAdd(true); setSelectedProducts([]); setImagePreview(null); }}
+              onClick={() => { handleClose(); setShowAdd(true); }}
               className="px-8 py-4 bg-[#FFAC00] text-[#111111] rounded-full text-sm font-black uppercase tracking-widest hover:bg-[#111111] hover:text-white transition-all shadow-xl flex items-center gap-3 active:scale-95"
             >
               <Plus className="w-5 h-5" /> Create Collection
@@ -53,7 +74,7 @@ export default function CollectionsManagementPage() {
           </header>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((cat, idx) => {
+            {categories.map((cat) => {
               const productCount = DRINKS.filter(d => d.category === cat).length;
               
               return (
@@ -69,7 +90,12 @@ export default function CollectionsManagementPage() {
                   <p className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-8">{productCount} Active Drinks</p>
 
                   <div className="flex items-center justify-between pt-6 border-t border-gray-50">
-                     <span className="text-xs font-bold text-[#FFAC00] tracking-widest uppercase cursor-pointer hover:text-[#111111]">Manage Items</span>
+                     <button 
+                        onClick={() => handleManageItems(cat)}
+                        className="text-xs font-bold text-[#FFAC00] tracking-widest uppercase cursor-pointer hover:text-[#111111] transition-colors"
+                     >
+                        Manage Items
+                     </button>
                      <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center cursor-pointer hover:bg-red-50 text-gray-300 hover:text-red-500 transition-colors">
                         <X className="w-4 h-4" />
                      </div>
@@ -80,58 +106,64 @@ export default function CollectionsManagementPage() {
 
             {/* Empty State / Add New Placeholder */}
             <div 
-              onClick={() => { setShowAdd(true); setSelectedProducts([]); setImagePreview(null); }}
+              onClick={() => { handleClose(); setShowAdd(true); }}
               className="rounded-[3rem] border-4 border-dashed border-gray-100 p-10 flex flex-col items-center justify-center text-center cursor-pointer group hover:border-[#FFAC00] transition-colors bg-white/20"
             >
                <div className="w-16 h-16 rounded-full border-2 border-gray-100 flex items-center justify-center mb-4 group-hover:border-[#FFAC00] transition-all">
                   <Plus className="w-6 h-6 text-gray-300 group-hover:text-[#FFAC00]" />
                </div>
-               <span className="font-black text-gray-300 uppercase tracking-widest text-xs group-hover:text-[#111111]">Add New Bucket</span>
+               <span className="font-black text-gray-300 uppercase tracking-widest text-xs group-hover:text-[#111111]">Add New Collection</span>
             </div>
           </div>
 
         </div>
       </main>
 
-      {/* Create Collection Modal */}
+      {/* Collection Modal (Create or Edit) */}
       {showAdd && (
         <div className="fixed inset-0 z-[100] bg-[#111111]/80 backdrop-blur-md flex items-center justify-center p-4">
            <div className="bg-white rounded-[3rem] p-10 sm:p-14 w-full max-w-xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
-              <button onClick={() => { setShowAdd(false); setImagePreview(null); }} className="absolute top-8 right-8 w-12 h-12 rounded-full bg-[#FAFAFA] flex items-center justify-center border border-gray-100 hover:bg-red-50 hover:text-red-500 transition-colors">
+              <button 
+                onClick={handleClose} 
+                className="absolute top-8 right-8 w-12 h-12 rounded-full bg-[#FAFAFA] flex items-center justify-center border border-gray-100 hover:bg-red-50 hover:text-red-500 transition-colors"
+              >
                 <X className="w-5 h-5" />
               </button>
 
               <div className="mb-10">
-                <h2 className="text-3xl font-black text-[#111111] uppercase tracking-tight mb-2">New Collection</h2>
-                <p className="text-gray-500 font-bold text-sm tracking-wide">Define a new category and select products.</p>
+                <h2 className="text-3xl font-black text-[#111111] uppercase tracking-tight mb-2">
+                   {editingCollection ? `Manage ${editingCollection}` : 'New Collection'}
+                </h2>
+                <p className="text-gray-500 font-bold text-sm tracking-wide">
+                   {editingCollection ? 'Update this category and its product assignments.' : 'Define a new category and select products.'}
+                </p>
               </div>
 
               <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
                 <div className="flex flex-col gap-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4">Collection Title <span className="text-red-500">*</span></label>
-                  <input type="text" required placeholder="e.g. Seasonal Specials" className="w-full bg-[#FAFAFA] px-8 py-6 rounded-3xl border border-transparent focus:border-[#FFAC00] outline-none font-bold transition-all shadow-inner" />
+                  <input 
+                    type="text" 
+                    required 
+                    value={collectionTitle}
+                    onChange={(e) => setCollectionTitle(e.target.value)}
+                    placeholder="e.g. Seasonal Specials" 
+                    className="w-full bg-[#FAFAFA] px-8 py-6 rounded-3xl border border-transparent focus:border-[#FFAC00] outline-none font-bold transition-all shadow-inner" 
+                  />
                 </div>
 
                 {/* Multi-product selection */}
                 <div className="flex flex-col gap-4">
                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4">Assign Products</label>
-                   <div className="relative">
-                      <select 
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value);
-                          if (val && !selectedProducts.includes(val)) toggleProduct(val);
-                        }}
-                        className="w-full bg-[#FAFAFA] px-8 py-6 rounded-3xl border border-transparent focus:border-[#FFAC00] outline-none font-bold transition-all appearance-none"
-                      >
-                        <option value="">Select products to add...</option>
-                        {DRINKS.map(drink => (
-                          <option key={drink.id} value={drink.id}>{drink.title}</option>
-                        ))}
-                      </select>
-                      <div className="pointer-events-none absolute right-8 top-1/2 -translate-y-1/2 text-[#FFAC00]">
-                        <Plus className="w-5 h-5" />
-                      </div>
-                   </div>
+                   <AdminDropdown 
+                      placeholder="Select products to add..."
+                      value=""
+                      onChange={(val) => {
+                        const id = typeof val === 'number' ? val : parseInt(val);
+                        if (id && !selectedProducts.includes(id)) toggleProduct(id);
+                      }}
+                      options={DRINKS.map(d => ({ label: d.title, value: d.id }))}
+                    />
 
                    {/* Selection Preview Chips */}
                    <div className="flex flex-wrap gap-2 px-2">
@@ -184,7 +216,7 @@ export default function CollectionsManagementPage() {
                 </div>
 
                 <button className="w-full bg-[#111111] text-[#FFAC00] py-6 rounded-full text-sm font-black uppercase tracking-widest hover:bg-[#FFAC00] hover:text-[#111111] transition-all shadow-xl">
-                  Save Collection
+                  {editingCollection ? 'Update Collection' : 'Save Collection'}
                 </button>
               </form>
            </div>

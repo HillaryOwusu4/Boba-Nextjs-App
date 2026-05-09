@@ -1,8 +1,7 @@
-'use client';
-
 import { useState, useRef, useEffect } from 'react';
-import { MoreHorizontal, Search, Filter, Download, ChevronDown, Check } from 'lucide-react';
+import { MoreHorizontal, Search, Download, RotateCcw } from 'lucide-react';
 import OrderStatusBadge from './OrderStatusBadge';
+import AdminDropdown from '../AdminDropdown';
 
 const DUMMY_ORDERS = [
   { id: '#2491', customer: 'Sophia Reynolds', date: 'Oct 24, 2023', total: '$28.50', status: 'Preparing', items: 'Midnight Matcha, Classic Boba' },
@@ -13,68 +12,12 @@ const DUMMY_ORDERS = [
   { id: '#2486', customer: 'Noah Smith', date: 'Oct 22, 2023', total: '$18.00', status: 'Completed', items: 'Classic Brew, Winter Velvet' },
 ];
 
-function FilterDropdown({ 
-  value, 
-  onChange, 
-  options, 
-  label 
-}: { 
-  value: string, 
-  onChange: (v: string) => void, 
-  options: string[], 
-  label: string 
-}) {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  return (
-    <div className="relative" ref={dropdownRef}>
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between gap-4 bg-[#FAFAFA] px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-[#111111] border border-transparent hover:border-gray-100 transition-all min-w-[160px]"
-      >
-        <span className="text-gray-400 font-bold">{label}:</span>
-        <span className="flex-1 text-left ml-1">{value}</span>
-        <ChevronDown className={`w-3 h-3 text-[#FFAC00] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-
-      {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full bg-white rounded-2xl shadow-2xl border border-gray-100 py-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-          {options.map((option) => (
-            <button
-              key={option}
-              onClick={() => {
-                onChange(option);
-                setIsOpen(false);
-              }}
-              className={`w-full flex items-center justify-between px-6 py-3 text-[10px] font-black uppercase tracking-widest transition-colors ${
-                value === option ? 'text-[#FFAC00] bg-[#FAFAFA]' : 'text-gray-500 hover:bg-[#FAFAFA] hover:text-[#111111]'
-              }`}
-            >
-              {option}
-              {value === option && <Check className="w-3 h-3" />}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function OrdersTable() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [dateFilter, setDateFilter] = useState('All Time');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
 
   const filteredOrders = DUMMY_ORDERS.filter(order => {
     const matchesSearch = 
@@ -89,6 +32,23 @@ export default function OrdersTable() {
 
     return matchesSearch && matchesStatus && matchesDate;
   });
+
+  // Reset to page 1 when filters or page size change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, statusFilter, dateFilter, pageSize]);
+
+  const totalPages = Math.ceil(filteredOrders.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentItems = filteredOrders.slice(startIndex, startIndex + pageSize);
+
+  const handleReset = () => {
+    setSearchTerm('');
+    setStatusFilter('All');
+    setDateFilter('All Time');
+    setPageSize(5);
+    setCurrentPage(1);
+  };
 
   const handleExportCSV = () => {
     // CSV Header
@@ -124,8 +84,8 @@ export default function OrdersTable() {
   return (
     <div className="bg-white rounded-[3rem] border border-gray-100 shadow-sm overflow-hidden">
       {/* Table Header / Actions */}
-      <div className="p-8 border-b border-gray-50 flex flex-col xl:flex-row xl:items-center justify-between gap-6">
-        <div className="flex flex-col md:flex-row gap-4 flex-1">
+      <div className="p-8 border-b border-gray-50 flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+        <div className="flex flex-col md:flex-row gap-4 flex-1 transition-all duration-300">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300" />
             <input 
@@ -138,25 +98,41 @@ export default function OrdersTable() {
           </div>
 
           <div className="flex gap-3">
-             <FilterDropdown 
+             <AdminDropdown 
                 label="Status"
-                value={statusFilter === 'All' ? 'All Statuses' : statusFilter}
-                onChange={(val) => setStatusFilter(val === 'All Statuses' ? 'All' : val)}
-                options={['All Statuses', 'Preparing', 'Ready', 'Completed', 'Cancelled']}
+                value={statusFilter}
+                onChange={(val: string) => setStatusFilter(val)}
+                options={[
+                  { label: 'All Statuses', value: 'All' },
+                  { label: 'Preparing', value: 'Preparing' },
+                  { label: 'Ready', value: 'Ready' },
+                  { label: 'Completed', value: 'Completed' },
+                  { label: 'Cancelled', value: 'Cancelled' }
+                ]}
              />
 
-             <FilterDropdown 
+             <AdminDropdown 
                 label="Date"
                 value={dateFilter}
-                onChange={setDateFilter}
-                options={['All Time', 'Oct 24', 'Oct 23', 'Oct 22']}
+                onChange={(val: string) => setDateFilter(val)}
+                options={[
+                  { label: 'All Time', value: 'All Time' },
+                  { label: 'Oct 24 (Today)', value: 'Oct 24' },
+                  { label: 'Oct 23', value: 'Oct 23' },
+                  { label: 'Oct 22', value: 'Oct 22' }
+                ]}
              />
           </div>
         </div>
         
         <div className="flex items-center gap-3">
-          <button className="p-4 bg-[#FAFAFA] rounded-2xl border border-gray-100 hover:bg-white hover:shadow-md transition-all group">
-            <Filter className="w-4 h-4 text-gray-400 group-hover:text-[#FFAC00]" />
+          <button 
+            onClick={handleReset}
+            title="Reset Filters"
+            className="p-4 bg-[#FAFAFA] rounded-2xl border border-gray-100 hover:bg-white hover:shadow-md transition-all group flex items-center gap-3"
+          >
+            <RotateCcw className="w-4 h-4 text-gray-400 group-hover:text-[#FFAC00]" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Reset</span>
           </button>
           <button 
             onClick={handleExportCSV}
@@ -183,7 +159,7 @@ export default function OrdersTable() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {filteredOrders.map((order) => (
+            {currentItems.map((order) => (
               <tr key={order.id} className="group hover:bg-[#FAFAFA] transition-colors">
                 <td className="px-8 py-6 text-sm font-black text-[#111111]">{order.id}</td>
                 <td className="px-8 py-6">
@@ -207,20 +183,83 @@ export default function OrdersTable() {
                 </td>
               </tr>
             ))}
+            {currentItems.length === 0 && (
+              <tr>
+                <td colSpan={7} className="px-8 py-20 text-center">
+                  <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">No orders found matching your criteria</p>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
 
-      {/* Pagination Faux */}
-      <div className="p-8 border-t border-gray-50 flex items-center justify-between">
-        <span className="text-[10px] font-black uppercase tracking-widest text-gray-300">
-          Showing {filteredOrders.length} of {DUMMY_ORDERS.length} orders
-        </span>
+      {/* Pagination Functional */}
+      <div className="p-8 border-t border-gray-50 flex flex-col sm:flex-row items-center justify-between gap-8">
+        <div className="flex items-center gap-6">
+          <span className="text-[10px] font-black uppercase tracking-widest text-gray-300">
+            Showing {startIndex + 1} to {Math.min(startIndex + pageSize, filteredOrders.length)} of {filteredOrders.length} orders
+          </span>
+
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Rows per page:</span>
+            <AdminDropdown 
+              variant="mini"
+              direction="up"
+              value={pageSize}
+              onChange={(val: number) => setPageSize(val)}
+              options={[
+                { label: '5', value: 5 },
+                { label: '10', value: 10 },
+                { label: '20', value: 20 },
+                { label: '30', value: 30 },
+                { label: '50', value: 50 },
+              ]}
+              className="min-w-[80px]"
+            />
+          </div>
+        </div>
+        
         <div className="flex gap-2">
-          <button className="px-4 py-2 bg-[#FAFAFA] rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-400 hover:bg-white hover:shadow-sm transition-all">Prev</button>
-          <button className="px-4 py-2 bg-[#111111] rounded-xl text-[10px] font-black uppercase tracking-widest text-white shadow-md">1</button>
-          <button className="px-4 py-2 bg-[#FAFAFA] rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-400 hover:bg-white hover:shadow-sm transition-all">2</button>
-          <button className="px-4 py-2 bg-[#FAFAFA] rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-400 hover:bg-white hover:shadow-sm transition-all">Next</button>
+          <button 
+            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-[#FAFAFA] rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-400 hover:bg-white hover:shadow-sm transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            Prev
+          </button>
+          
+          {[...Array(totalPages)].map((_, i) => {
+            // Only show a limited number of page buttons if there are many pages
+            if (totalPages > 7) {
+               if (i > 0 && i < totalPages - 1 && Math.abs(i + 1 - currentPage) > 1) {
+                  if (i === 1 || i === totalPages - 2) return <span key={i} className="text-gray-300">...</span>;
+                  return null;
+               }
+            }
+
+            return (
+              <button 
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                  currentPage === i + 1 
+                    ? 'bg-[#111111] text-white shadow-md' 
+                    : 'bg-[#FAFAFA] text-gray-400 hover:bg-white hover:shadow-sm'
+                }`}
+              >
+                {i + 1}
+              </button>
+            );
+          })}
+
+          <button 
+            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+            disabled={currentPage === totalPages || totalPages === 0}
+            className="px-4 py-2 bg-[#FAFAFA] rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-400 hover:bg-white hover:shadow-sm transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

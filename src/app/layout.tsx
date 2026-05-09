@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 import CartDrawer from "@/components/CartDrawer";
-
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 export default function RootLayout({
   children,
@@ -39,6 +39,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${arvo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <SmoothScrollProvider />
         <NavWrapper>
           {children}
         </NavWrapper>

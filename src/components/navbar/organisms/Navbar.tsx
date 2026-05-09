@@ -10,15 +10,16 @@ import FullscreenMenu from './FullscreenMenu';
 import { useScrolled } from '../hooks/useScrolled';
 
 export default function Navbar() {
-  const scrolled = useScrolled();
-  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isProductList = pathname?.startsWith('/product-list');
+  const scrollThreshold = isProductList ? 5000 : 20;
+  const scrolled = useScrolled(scrollThreshold);
+  const [isOpen, setIsOpen] = useState(false);
 
   // Force the scroll look (white bg, dark text) on pages with a white background like /drinks, /collections, /about, and /contact
   const forceLightMode = 
     pathname?.startsWith('/drinks') || 
     pathname?.startsWith('/collections') ||
-    pathname?.startsWith('/product-list') ||
     pathname?.startsWith('/about') ||
     pathname?.startsWith('/contact');
   const effectivelyScrolled = scrolled || forceLightMode;

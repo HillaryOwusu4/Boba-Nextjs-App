@@ -107,7 +107,7 @@ export default function CollectionsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white overflow-hidden">
+    <section id="shop-collections" ref={sectionRef} className="py-24 bg-white overflow-hidden">
       <div className="w-full px-[clamp(1.5rem,5vw,4rem)]">
         <div className="text-center mb-16 flex flex-col items-center section-header">
           <span className="px-5 py-2 bg-white border border-gray-100 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] shadow-sm mb-6 inline-block">

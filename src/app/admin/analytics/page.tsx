@@ -2,6 +2,7 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import MetricCards from '@/components/admin/analytics/MetricCards';
 import SalesChart from '@/components/admin/analytics/SalesChart';
 import RecentOrders from '@/components/admin/analytics/RecentOrders';
+import CategoryDistribution from '@/components/admin/analytics/CategoryDistribution';
 
 export default function AnalyticsDashboard() {
   return (
@@ -10,7 +11,7 @@ export default function AnalyticsDashboard() {
       <AdminSidebar />
       
       {/* Main Content Pane */}
-      <main className="flex-1 ml-64 p-8 xl:p-12 h-screen overflow-y-auto">
+      <main className="flex-1 h-screen overflow-y-auto">
         <div className="max-w-6xl mx-auto space-y-8">
           
           <header className="flex justify-between items-end mb-12">
@@ -34,12 +35,20 @@ export default function AnalyticsDashboard() {
             <MetricCards />
           </section>
 
-          {/* Lower Grid: Chart & Auxiliary Data */}
-          <section className="flex flex-col lg:flex-row gap-8 w-full">
-            <SalesChart />
+          {/* Dashboard Main Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             
-            {/* Quick Stats or Actions for the right column */}
-            <div className="w-full lg:w-1/3 flex flex-col gap-8">
+            {/* Main Action Area (Left 2/3) */}
+            <div className="lg:col-span-2 space-y-8">
+              <SalesChart />
+              <RecentOrders />
+            </div>
+
+            {/* Sidebar / Auxiliary Area (Right 1/3) */}
+            <div className="space-y-8">
+              <CategoryDistribution />
+              
+              {/* Low Stock Alert Card */}
               <div className="bg-[#111111] text-white rounded-[2rem] p-8 shadow-xl flex flex-col justify-between overflow-hidden relative group">
                 <div className="absolute -right-16 -top-16 w-48 h-48 bg-[#FFAC00] rounded-full mix-blend-screen blur-[60px] opacity-20" />
                 
@@ -61,13 +70,8 @@ export default function AnalyticsDashboard() {
                 </div>
               </div>
             </div>
-          </section>
 
-          {/* Table */}
-          <section className="pb-12">
-            <RecentOrders />
-          </section>
-
+          </div>
         </div>
       </main>
     </div>

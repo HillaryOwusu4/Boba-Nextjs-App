@@ -1,10 +1,13 @@
 import { useState, useRef } from 'react';
-import { Plus, X, Camera, Zap } from 'lucide-react';
+import { Plus, X, Camera } from 'lucide-react';
+import AdminDropdown from '../AdminDropdown';
 
 export default function ProductForm({ onClose }: { onClose: () => void }) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [ingredients, setIngredients] = useState([{ name: 'Tapioca Pearls', icon: '⚫' }]);
+  const [category, setCategory] = useState('Matcha');
   const fileInputRef = useRef<HTMLInputElement>(null);
+
   // Predefined ingredient list for the dropdown
   const COMMON_INGREDIENTS = [
     { name: 'Tapioca Pearls', icon: '⚫' },
@@ -24,6 +27,16 @@ export default function ProductForm({ onClose }: { onClose: () => void }) {
     { name: 'Honey', icon: '🍯' },
     { name: 'Passion Fruit', icon: '🌸' },
   ];
+
+  const categories = [
+    { label: 'Matcha', value: 'Matcha' },
+    { label: 'Milk Tea', value: 'Milk Tea' },
+    { label: 'Fruit Tea', value: 'Fruit Tea' },
+    { label: 'Signature', value: 'Signature' },
+    { label: 'Pastries', value: 'Pastries' },
+  ];
+
+  const ingredientOptions = COMMON_INGREDIENTS.map(i => ({ label: i.name, value: i.name }));
 
   const addIngredient = () => setIngredients([...ingredients, { name: COMMON_INGREDIENTS[0].name, icon: COMMON_INGREDIENTS[0].icon }]);
   const removeIngredient = (index: number) => setIngredients(ingredients.filter((_, i) => i !== index));
@@ -74,17 +87,15 @@ export default function ProductForm({ onClose }: { onClose: () => void }) {
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Category <span className="text-red-500">*</span></label>
-              <select required className="w-full bg-[#FAFAFA] px-6 py-4 rounded-2xl border border-transparent focus:border-[#FFAC00] outline-none font-bold transition-all appearance-none">
-                <option>Matcha</option>
-                <option>Milk Tea</option>
-                <option>Fruit Tea</option>
-                <option>Signature</option>
-                <option>Pastries</option>
-              </select>
+              <AdminDropdown 
+                value={category}
+                onChange={setCategory}
+                options={categories}
+              />
             </div>
           </div>
 
-          {/* Image Upload Area */}
+          {/* ... existing image upload area ... */}
           <div 
             onClick={() => fileInputRef.current?.click()}
             className={`w-full aspect-square rounded-[2.5rem] border-2 border-dashed flex flex-col items-center justify-center group cursor-pointer transition-all relative overflow-hidden ${
@@ -118,7 +129,7 @@ export default function ProductForm({ onClose }: { onClose: () => void }) {
           </div>
         </div>
 
-        {/* Description Section */}
+        {/* ... existing description section ... */}
         <div className="flex flex-col gap-2">
           <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 uppercase tracking-widest">Story & Ingredients</label>
           <textarea placeholder="Tell the story of this drink..." rows={4} className="w-full bg-[#FAFAFA] px-6 py-6 rounded-[2rem] border border-transparent focus:border-[#FFAC00] outline-none font-bold transition-all resize-none" />
@@ -138,15 +149,13 @@ export default function ProductForm({ onClose }: { onClose: () => void }) {
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-xl shadow-sm">
                     {ing.icon}
                   </div>
-                  <select 
-                    value={ing.name} 
-                    onChange={(e) => handleIngredientSelect(idx, e.target.value)} 
-                    className="flex-1 bg-transparent outline-none font-bold text-xs uppercase tracking-wider appearance-none"
-                  >
-                    {COMMON_INGREDIENTS.map(item => (
-                      <option key={item.name} value={item.name}>{item.name}</option>
-                    ))}
-                  </select>
+                  <AdminDropdown 
+                    variant="mini"
+                    className="flex-1"
+                    value={ing.name}
+                    onChange={(val) => handleIngredientSelect(idx, val)}
+                    options={ingredientOptions}
+                  />
                   <button onClick={() => removeIngredient(idx)} className="text-gray-300 hover:text-red-500 transition-colors px-2">
                     <X className="w-4 h-4" />
                   </button>
