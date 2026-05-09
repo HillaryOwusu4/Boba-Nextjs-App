@@ -14,8 +14,13 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Force the scroll look (white bg, dark text) on pages with a white background like /drinks and /collections
-  const forceLightMode = pathname?.startsWith('/drinks') || pathname?.startsWith('/collections');
+  // Force the scroll look (white bg, dark text) on pages with a white background like /drinks, /collections, /about, and /contact
+  const forceLightMode = 
+    pathname?.startsWith('/drinks') || 
+    pathname?.startsWith('/collections') ||
+    pathname?.startsWith('/product-list') ||
+    pathname?.startsWith('/about') ||
+    pathname?.startsWith('/contact');
   const effectivelyScrolled = scrolled || forceLightMode;
 
   // We can decide dark mode based on scroll or page props. 

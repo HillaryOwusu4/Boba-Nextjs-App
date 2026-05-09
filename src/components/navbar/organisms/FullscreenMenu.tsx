@@ -7,13 +7,12 @@ export default function FullscreenMenu({ isOpen }: { isOpen: boolean }) {
 
   // Mobile Links - large typography with distinct dummy images for each route
   const MAIN_LINKS = [
-    { label: 'LITE', href: '#lite', image: 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=1000&q=80' },
-    { label: 'PLUS', href: '#plus', image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1000&q=80' },
-    { label: 'NEXT', href: '#next', image: 'https://images.unsplash.com/photo-1513689352648-932d56a735c0?w=1000&q=80' },
+    { label: 'HOME', href: '/', image: 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=1000&q=80' },
+    { label: 'PRODUCTS', href: '/product-list', image: 'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=1000&q=80' },
+    { label: 'COLLECTIONS', href: '/collections', image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1000&q=80' },
     { label: 'SCROLL STORY', href: '/scroll-story', image: '/multible_boab.png' },
-    { label: 'INVENTORY', href: '#inventory', image: 'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=1000&q=80' },
-    { label: 'RENT', href: '#rent', image: 'https://images.unsplash.com/photo-1515876305430-f06edab8282a?w=1000&q=80' },
-    // { label: 'REVIEWS', href: '#reviews', image: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=1000&q=80' },
+    { label: 'ABOUT', href: '/about', image: '/boba_store_lifestyle_1778329727033.png' },
+    { label: 'CONTACT', href: '/contact', image: 'https://images.unsplash.com/photo-1515876305430-f06edab8282a?w=1000&q=80' },
   ];
 
   return (
@@ -62,7 +61,6 @@ export default function FullscreenMenu({ isOpen }: { isOpen: boolean }) {
             </div>
           </div>
         </div>
-
       </div>
 
       {/* Footer / Secondary Links inside menu */}
@@ -71,8 +69,8 @@ export default function FullscreenMenu({ isOpen }: { isOpen: boolean }) {
       }`}>
         <div className="flex gap-6 md:gap-12 text-xs md:text-sm font-semibold tracking-widest">
           <a href="#faq" className="text-gray-500 hover:text-white transition-colors">FAQ</a>
-          <a href="#about" className="text-gray-500 hover:text-white transition-colors">ABOUT US</a>
-          <a href="#contact" className="text-gray-500 hover:text-white transition-colors">CONTACT</a>
+          <a href="/about" className="text-gray-500 hover:text-white transition-colors">ABOUT US</a>
+          <a href="/contact" className="text-gray-500 hover:text-white transition-colors">CONTACT</a>
         </div>
         <div className="flex gap-6 text-xs md:text-sm font-semibold tracking-widest">
           <span className="text-gray-500 hover:text-white cursor-pointer transition-colors">INSTAGRAM</span>

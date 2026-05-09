@@ -1,13 +1,12 @@
 import NavLink from '../atoms/NavLink';
 
 const DESKTOP_LINKS = [
-  { label: 'Lite', href: '#lite' },
-  { label: 'Plus', href: '#plus' },
-  { label: 'Next', href: '#next' },
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/product-list' },
+  { label: 'Collections', href: '/collections' },
   { label: 'Scroll Story', href: '/scroll-story' },
-  { label: 'Inventory', href: '/product-list' },
-  { label: 'Rent', href: '#rent' },
-  { label: 'Reviews', href: '#reviews' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function DesktopNav({ isDarkBackground, isOpen }: { isDarkBackground: boolean, isOpen: boolean }) {
