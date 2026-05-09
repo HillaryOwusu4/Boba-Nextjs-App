@@ -1,33 +1,30 @@
-import { Navbar }     from "@/components/navbar";
-import HeroSection   from "@/components/HeroSection";
-import AboutSection  from "@/components/AboutSection";
-import ProductSection from "@/components/ProductSection";
-import CtaSection from "@/components/CtaSection";
-import Footer from "@/components/Footer";
+'use client'
+import { Navbar }            from "@/components/navbar";
+import ProductHero           from "@/components/ProductHero";
+import TrustBar              from "@/components/TrustBar";
+import WhyBobaSection        from "@/components/WhyBobaSection";
+import ProductSection        from "@/components/ProductSection";
+import BrandStatement        from "@/components/BrandStatement";
+import AboutSection          from "@/components/AboutSection";
+import TestimonialsSection   from "@/components/TestimonialsSection";
+import CtaSection            from "@/components/CtaSection";
+import NewsletterSection     from "@/components/NewsletterSection";
+import Footer                from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="relative">
      
-      <HeroSection />
-      <AboutSection />
+      <ProductHero />
+      <TrustBar />
+      <WhyBobaSection />
       <ProductSection />
+      <BrandStatement />
+      <AboutSection />
+      <TestimonialsSection />
       <CtaSection />
-
-      {/* Seamless Integration Layer */}
-      <div 
-        className="absolute flex flex-col top-[515vh] left-0 w-full z-40 pointer-events-none transform -translate-y-[45%] overflow-visible"
-        style={{
-          maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 100%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 100%)'
-        }}
-      >
-        <img 
-          src="/YU.png" 
-          alt="Seamless Section Edge" 
-          className="w-full z-40 opacity-100 drop-shadow-md"
-        />
-      </div>
+      <NewsletterSection />
+   
     </div>
   );
 }

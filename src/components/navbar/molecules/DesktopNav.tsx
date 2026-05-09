@@ -4,6 +4,7 @@ const DESKTOP_LINKS = [
   { label: 'Lite', href: '#lite' },
   { label: 'Plus', href: '#plus' },
   { label: 'Next', href: '#next' },
+  { label: 'Scroll Story', href: '/scroll-story' },
   { label: 'Inventory', href: '/product-list' },
   { label: 'Rent', href: '#rent' },
   { label: 'Reviews', href: '#reviews' },

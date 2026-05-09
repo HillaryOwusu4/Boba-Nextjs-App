@@ -10,6 +10,7 @@ export default function FullscreenMenu({ isOpen }: { isOpen: boolean }) {
     { label: 'LITE', href: '#lite', image: 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=1000&q=80' },
     { label: 'PLUS', href: '#plus', image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1000&q=80' },
     { label: 'NEXT', href: '#next', image: 'https://images.unsplash.com/photo-1513689352648-932d56a735c0?w=1000&q=80' },
+    { label: 'SCROLL STORY', href: '/scroll-story', image: '/multible_boab.png' },
     { label: 'INVENTORY', href: '#inventory', image: 'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=1000&q=80' },
     { label: 'RENT', href: '#rent', image: 'https://images.unsplash.com/photo-1515876305430-f06edab8282a?w=1000&q=80' },
     // { label: 'REVIEWS', href: '#reviews', image: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=1000&q=80' },

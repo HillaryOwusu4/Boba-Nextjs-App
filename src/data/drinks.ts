@@ -9,7 +9,40 @@ export interface Nutrition {
   carbs: number;
   protein: number;
 }
-
+export const allProducts = [
+  { id: 1, title: 'Classic Brew', price: '$8.00', image: '/one_boba.png', color: '#F4F1EA' },
+  { id: 2, title: 'Daddy Signature', price: '$7.50', image: '/multible_boab.png', color: '#1A1A1A' },
+  { id: 3, title: 'Vintage Burst', price: '$8.50', image: '/one_boba.png', color: '#E64833' },
+  { id: 5, title: 'Summer Pop', price: '$7.00', image: '/one_boba.png', color: '#FFAC00' },
+  { id: 6, title: 'Winter Velvet', price: '$9.00', image: '/multible_boab.png', color: '#4B2C20' },
+];
+export const ITEMS = [
+  { 
+    id: 1, 
+    title: 'Experience', 
+    subtitle: 'Pure Vision',
+    description: 'Immerse yourself in curated cinematic masterpieces delivered in breathtaking high definition.',
+    image: '/boba_cinematic_1_1777230647935.png',
+    videoUrl: '/videos/kling_20260411_作品_The_drink__5125_0(1).mp4'
+  },
+  { 
+    id: 2, 
+    title: 'Matcha', 
+    subtitle: 'Magic',
+    description: 'Discover the vibrant essence of premium ceremonial grade matcha blended to perfection.',
+    image: '/boba_cinematic_2_1777230830032.png',
+    videoUrl: '/videos/kling_20260427_作品_Ultra_real_3097_0.mp4'
+  },
+  { 
+    id: 3, 
+    title: 'Taro', 
+    subtitle: 'Fantasy',
+    description: 'Indulge in the velvety smooth texture of our signature taro infusion.',
+    image: '/boba_cinematic_3_1777231030431.png',
+    videoUrl: '/videos/20260427_045908_UTC_0.mp4'
+  },
+  
+];
 export const DRINKS = [
   {
     id: 101,

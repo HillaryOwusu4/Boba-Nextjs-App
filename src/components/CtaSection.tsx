@@ -62,13 +62,6 @@ export default function CtaSection() {
   return (
     <section ref={sectionRef} className="relative w-full min-h-[85vh] bg-[var(--color-charcoal)] py-40 md:py-56 flex items-center justify-center overflow-hidden z-10">
 
-      {/* Top Transition SVG */}
-      <div className="absolute top-[0px] left-0 w-full z-10 pointer-events-none transform rotate-180">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto">
-          <path fill="#FFAC00" fillOpacity="1" d="M0,160L48,165.3C96,171,192,181,288,170.7C384,160,480,128,576,133.3C672,139,768,181,864,186.7C960,192,1056,160,1152,144C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-      </div>
-
       {/* Floating Background Texture Image */}
       <img
         ref={cupRef}
@@ -78,16 +71,13 @@ export default function CtaSection() {
       />
 
       {/* Typography */}
-      <div className="relative z-20 w-full max-w-[1200px] mx-auto px-6 flex flex-col items-center text-center">
+      <div className="relative z-20 w-full px-[clamp(1.5rem,5vw,4rem)] flex flex-col items-center text-center">
 
-        <span className="cta-subtitle font-serif italic text-2xl md:text-[2.2rem] text-[var(--color-neutral-400)] mb-6 lowercase tracking-wider">
+        <span className="cta-subtitle mt-[100px] italic text-2xl md:text-[2.2rem] text-[var(--color-neutral-400)] mb-6 lowercase tracking-wider">
           the perfect sip awaits
         </span>
 
-        <h2
-          className="text-[4rem] sm:text-[6rem] md:text-[9rem] lg:text-[11rem] font-[900] tracking-tighter leading-[0.85] mb-12 uppercase drop-shadow-xl"
-          style={{ fontFamily: 'Impact, sans-serif' }}
-        >
+        <h2 className="text-[4rem] sm:text-[6rem] md:text-[9rem] lg:text-[11rem] font-black tracking-tight leading-[0.85] mb-12 uppercase drop-shadow-xl">
           <span className="cta-line-1 inline-block text-[var(--color-snow)]">GET YOUR</span>
           <br />
           <span className="cta-line-2 inline-block text-[var(--color-lemon)]">CRAVING</span>

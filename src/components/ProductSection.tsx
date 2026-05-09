@@ -16,7 +16,7 @@ export default function ProductSection() {
   const [quantities, setQuantities] = useState<Record<number, number>>(
     () => Object.fromEntries(products.map((p) => [p.id, 1]))
   );
-  const [activeCardId, setActiveCardId] = useState(products[0].id);
+  const [activeCardId, setActiveCardId] = useState(1);
   
   const sectionRef = useRef<HTMLElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
@@ -156,23 +156,25 @@ export default function ProductSection() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative w-full min-h-[90vh] bg-[#FFAC00] overflow-hidden flex flex-col justify-center pb-32"
+      className="relative w-full min-h-[90vh] bg-[#FAFAFA] overflow-hidden flex flex-col justify-center pb-32"
     >
       <div ref={ringsRef} className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-full h-[150vh] flex items-center justify-center pointer-events-none z-[1]">
-        <div className="absolute w-[800px] h-[800px] rounded-full border border-white/20"></div>
-        <div className="absolute w-[1200px] h-[1200px] rounded-full border border-white/15"></div>
-        <div className="absolute w-[1600px] h-[1600px] rounded-full border border-white/10"></div>
-        <div className="absolute w-[2000px] h-[2000px] rounded-full border border-white/5"></div>
+        <div className="absolute w-[800px] h-[800px] rounded-full border border-black/[0.03]"></div>
+        <div className="absolute w-[1200px] h-[1200px] rounded-full border border-black/[0.04]"></div>
+        <div className="absolute w-[1600px] h-[1600px] rounded-full border border-black/[0.02]"></div>
+        <div className="absolute w-[2000px] h-[2000px] rounded-full border border-black/[0.02]"></div>
       </div>
 
-      <div className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,4vw,3rem)] grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center relative z-10 pt-24">
+      <div className="w-full px-[clamp(1.5rem,5vw,4rem)] grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center relative z-10 pt-24">
         <div ref={textContainerRef} className="flex flex-col items-start w-full">
-          <span className="font-serif italic text-3xl md:text-[2.5rem] text-white tracking-wide lowercase mb-4 drop-shadow-sm">Meet the flavor</span>
-          <h2 className="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-[900] tracking-tighter leading-[0.9] mb-8 uppercase text-[#F4F1EA] drop-shadow-[0_4px_10px_rgba(0,0,0,0.1)]" style={{ fontFamily: 'Impact, sans-serif' }}>OUR PRODUCTS</h2>
+          <span className="px-5 py-2 bg-white border border-gray-200 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] shadow-sm mb-6">
+            The Crowd Favorites
+          </span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] mb-8 uppercase text-[#111111]">BEST SELLERS</h2>
         </div>
         <div className="hidden md:flex flex-col items-end justify-center h-full pr-12">
-          <p className="text-[3rem] lg:text-[5rem] font-bold text-black/20 font-sans tracking-widest flex items-baseline">
-            <span className="text-white text-[5rem] lg:text-[8rem] leading-none drop-shadow-md">{activeCardId}</span>/3
+          <p className="text-3xl lg:text-4xl font-bold text-gray-300 font-sans tracking-widest flex items-baseline">
+            <span className="text-[#111111] text-5xl lg:text-6xl leading-none">{activeCardId}</span>/3
           </p>
         </div>
       </div>
@@ -186,13 +188,15 @@ export default function ProductSection() {
             qty={quantities[product.id] || 1}
             onQtyChange={(delta) => handleQtyChange(product.id, delta)}
             onAddToCart={() => onAddClick(product)}
-            onMouseEnter={() => setActiveCardId(product.id)}
+            onMouseEnter={() => setActiveCardId(index+1)}
             className="absolute top-0 left-0 w-[340px] md:w-[380px]"
           />
         ))}
       </div>
-      <div className="w-full flex justify-center mt-24 relative z-20">
-        <Link href={`/product-list`} className="group flex items-center gap-3 bg-[#1A1A1A] text-[#F4F1EA] px-10 py-5 rounded-full text-lg font-bold transition-all hover:scale-105 active:scale-95">View more products</Link>
+      <div className="w-full flex justify-center mt-32 relative z-20">
+        <Link href={`/product-list`} className="group flex items-center gap-3 bg-[#111111] text-white px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl">
+          View more products
+        </Link>
       </div>
     </section>
   );
