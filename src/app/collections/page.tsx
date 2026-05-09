@@ -95,12 +95,12 @@ function CollectionContent() {
       <ReactLenis root options={{ lerp: 0.08, smoothWheel: true }}>
 
         {/* ── Mobile / Tablet card grid (hidden on lg+) ── */}
-        <div className="lg:hidden pt-24 pb-16 px-4 sm:px-8 bg-white min-h-screen">
+        <div className="lg:hidden pt-24 pb-16 px-[clamp(1.5rem,5vw,4rem)] bg-white min-h-screen">
           <div className="mb-10 text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
               {categoryParam ? `The ${categoryParam} Collection` : 'Available in multiple bottle sizes'}
             </p>
-            <h1 className="font-display font-bold text-4xl sm:text-5xl uppercase tracking-tight text-[#1a1a1a]">
+            <h1 className="font-black text-4xl sm:text-5xl uppercase tracking-tight text-[#111111] leading-[1.05]">
               {categoryParam || 'Collections'}
             </h1>
           </div>
@@ -115,10 +115,10 @@ function CollectionContent() {
         <section
           ref={wrapRef}
           className="hidden lg:block relative bg-white"
-          style={{ height: `${filteredDrinks.length * 160 + 400}vh` }}
+          style={{ height: `${filteredDrinks.length * 100 + 100}vh` }}
         >
           {/* Sticky viewport stage */}
-          <div className="sticky top-0 h-[45rem] w-full overflow-hidden flex flex-col bg-white">
+          <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col bg-white">
             {/* White dripping background overlay */}
             <img
               src="/wee.png"
@@ -128,8 +128,8 @@ function CollectionContent() {
             />
             {/* ── Head ── */}
             <div 
-              className="h-[30%] relative px-12 z-20 pointer-events-none"
-              style={{ paddingTop: `${Math.round(lerpNum(80, 120, flat))}px` }}
+              className="h-[30%] relative px-[clamp(1.5rem,5vw,4rem)] z-20 pointer-events-none"
+              style={{ paddingTop: `${Math.round(lerpNum(100, 140, flat))}px` }}
             >
 
               {/* Collection intro — fades out when scroll starts */}
@@ -141,16 +141,16 @@ function CollectionContent() {
                   pointerEvents: introOpacity > 0.5 ? 'auto' : 'none',
                 }}
               >
-                <p className="text-[11px] tracking-[0.28em] uppercase text-neutral-500 mb-4 font-sans">
+                <p className="text-[11px] font-bold tracking-[0.28em] uppercase text-gray-400 mb-4">
                   {categoryParam ? `The ${categoryParam} Collection` : 'Available in multiple bottle sizes'}
                 </p>
                 <h1 
-                  className="font-display font-bold tracking-tight leading-[0.9] uppercase text-[#1a1a1a] whitespace-nowrap"
-                  style={{ fontSize: 'clamp(40px, 6vw, 90px)' }}
+                  className="font-black tracking-tight leading-[0.9] uppercase text-[#111111] whitespace-nowrap"
+                  style={{ fontSize: 'clamp(40px, 6.5vw, 100px)' }}
                 >
                   {categoryParam || 'Collections'}
                 </h1>
-                <p className="mt-5 max-w-[45vw] text-[17px] leading-relaxed text-neutral-500 font-sans">
+                <p className="mt-6 max-w-[45vw] text-[17px] leading-relaxed text-gray-500 font-medium">
                   {categoryParam 
                     ? `Discover our exclusive selection of ${categoryParam} drinks, each crafted with premium ingredients and our signature artistic touch.`
                     : 'Nine drinks, drawn from a winter of slow afternoons — brown sugar, matcha, taro and stone fruit; each one a small ritual built around boba, foam, and the steady architecture of a paper cup.'
@@ -161,17 +161,17 @@ function CollectionContent() {
 
               {/* Drink head — crossfades in as conveyor engages */}
               <div
-                className="absolute  top-20 left-12 right-12"
+                className="absolute top-20 left-[clamp(1.5rem,5vw,4rem)] right-[clamp(1.5rem,5vw,4rem)]"
                 style={{
                   opacity: drinkHeadOpacity,
                   pointerEvents: drinkHeadOpacity > 0.5 ? 'auto' : 'none',
                 }}
               >
-                <p className="text-[11px] tracking-[0.28em] mt-5 uppercase text-neutral-500 mb-4 font-sans">
+                <p className="text-[11px] font-bold tracking-[0.28em] mt-5 uppercase text-gray-400 mb-4">
                   {categoryParam ? `The ${categoryParam} Collection` : 'Available in multiple bottle sizes'}
                 </p>
                 <h1
-                  className="font-display w-[200px] font-bold tracking-tight leading-[0.95] uppercase text-[#1a1a1a] will-change-transform"
+                  className="font-black w-[250px] tracking-tight leading-[0.95] uppercase text-[#111111] will-change-transform"
                   style={{
                     fontSize: 'clamp(44px, 6vw, 84px)',
                     opacity: titleOpacity,
@@ -182,7 +182,7 @@ function CollectionContent() {
                 </h1>
 
                 <p
-                  className="mt-3 text-[15px] leading-relaxed text-neutral-500 font-sans max-w-[38vw] will-change-transform"
+                  className="mt-4 text-[16px] leading-relaxed text-gray-500 font-medium max-w-[38vw] will-change-transform"
                   style={{
                     opacity: titleOpacity,
                     transform: `translateY(${titleY * 0.4}px)`,
@@ -199,7 +199,7 @@ function CollectionContent() {
                   }}
                 >
                   <span
-                    className="font-display font-bold tracking-tight leading-[0.9] uppercase mb-[30px]"
+                    className="font-black tracking-tight leading-[0.9] uppercase mb-[30px]"
                     style={{
                       fontSize: 'clamp(60px, 8vw, 100px)',
                       color: activeDrink.buttonColor,
@@ -280,10 +280,10 @@ function CollectionContent() {
             </div>
 
             {/* ── Footer meta ── */}
-            <div className="absolute bottom-7 left-12 right-12 flex justify-between text-[10px] tracking-[0.24em] uppercase text-neutral-500 pointer-events-none font-sans z-10">
+            <div className="absolute bottom-7 left-[clamp(1.5rem,5vw,4rem)] right-[clamp(1.5rem,5vw,4rem)] flex justify-between text-[11px] font-bold tracking-[0.2em] uppercase text-gray-400 pointer-events-none z-10">
               <span>
                 Drink{' '}
-                <strong className="text-[#1a1a1a] font-semibold">
+                <strong className="text-[#111111] font-black">
                   {String(displayActive + 1).padStart(2, '0')}
                 </strong>
                 {' '}/ {String(filteredDrinks.length).padStart(2, '0')}
