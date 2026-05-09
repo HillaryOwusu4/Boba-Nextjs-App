@@ -13,32 +13,28 @@ const collections = [
     title: 'THE NEWBIES',
     subTitle: 'Fresh Arrivals',
     category: 'New Arrivals',
-    image: '/bobadrinks/1 (2).png',
-    bgColor: '#9775FA', // Purple
+    imageCover: '/collection_new_arrivals_1778331362416.png',
   },
   {
     id: 2,
     title: 'MATCHA SERIES',
     subTitle: 'Premium Grade',
     category: 'Matcha',
-    image: '/bobadrinks/1 (3).png',
-    bgColor: '#FF922B', // Orange
+    imageCover: '/collection_matcha_1778331218598.png',
   },
   {
     id: 3,
     title: 'MILK SERIES',
     subTitle: 'Creamy Classics',
     category: 'Milk Series',
-    image: '/multible_boab.png',
-    bgColor: '#339AF0', // Blue
+    imageCover: '/boba_pouring_action_1778329663757.png',
   },
   {
     id: 4,
     title: 'SIGNATURE RECIPES',
     subTitle: 'Unique Blends',
     category: 'Signature',
-    image: '/bobadrinks/1 (2).png',
-    bgColor: '#FF8787', // Pink
+    imageCover: '/boba_premium_ingredients_1778329742425.png',
   },
 ];
 
@@ -112,13 +108,16 @@ export default function CollectionsSection() {
 
   return (
     <section ref={sectionRef} className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="w-full px-[clamp(1.5rem,5vw,4rem)]">
         <div className="text-center mb-16 flex flex-col items-center section-header">
-          <h2 className="text-3xl md:text-4xl font-display text-[var(--color-charcoal)] uppercase tracking-wide">
+          <span className="px-5 py-2 bg-white border border-gray-100 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] shadow-sm mb-6 inline-block">
+             Drink Series
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-[#111111] uppercase">
             Collections
           </h2>
-          <div className="w-16 h-px bg-gray-300 my-4"></div>
-          <p className="text-[var(--color-neutral-500)] italic font-serif text-lg">
+          <div className="w-16 h-px bg-gray-300 my-6"></div>
+          <p className="text-gray-500 font-medium text-lg">
             Explore our curated drink series and find your perfect boba match
           </p>
         </div>
@@ -129,11 +128,20 @@ export default function CollectionsSection() {
               href={`/collections?category=${item.category}`} 
               key={item.id} 
               className="collection-card relative group block aspect-[0.85/1] rounded-[3.2rem] overflow-hidden transition-all duration-700 hover:-translate-y-3 hover:shadow-2xl hover:shadow-black/10"
-              style={{ backgroundColor: item.bgColor }}
             >
-              {/* Top-Left Label Area */}
+              {/* Full Bleed Image Centered */}
+              <div className="absolute inset-0 z-0">
+                <img 
+                  src={item.imageCover} 
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.10]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-500" />
+              </div>
+
+              {/* Top-Left Label Area - Kept exact shape styling! */}
               <div className="absolute top-0 left-0 bg-white pt-7 pl-7 pb-4 pr-10 rounded-br-[2.4rem] z-20">
-                <div className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   {item.category}
                 </div>
                 <h3 className="text-[1.35rem] font-bold text-black leading-[1.1] tracking-tight">
@@ -165,18 +173,9 @@ export default function CollectionsSection() {
                 </div>
               </div>
 
-              {/* Main Image */}
-              <div className="absolute inset-0 flex items-center justify-center p-14 pt-20 pointer-events-none card-image">
-                <img 
-                  src={item.image} 
-                  alt={item.title}
-                  className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-700 group-hover:scale-110 group-hover:-rotate-6"
-                />
-              </div>
-
-              {/* Bottom-Left Subtitle Area */}
+              {/* Bottom-Left Subtitle Area - Rebalanced colors for image-centric setup */}
               <div className="absolute bottom-0 left-0 bg-white pt-3 pl-8 pb-7 pr-8 rounded-tr-[2.2rem] z-20 card-subtitle">
-                <p className="text-[0.95rem] font-semibold text-neutral-500 tracking-tight">
+                <p className="text-[0.95rem] font-bold text-[#FFAC00] tracking-tight">
                   {item.subTitle}
                 </p>
                 {/* Concave Corner Connections (Bottom-Right of Tab) */}
@@ -193,13 +192,10 @@ export default function CollectionsSection() {
 
               {/* Bottom-Right Arrow Circle */}
               <div className="absolute bottom-7 right-8 z-20">
-                <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-black shadow-lg shadow-black/5 transition-all duration-500 group-hover:scale-110 group-hover:bg-black group-hover:text-white">
+                <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center text-black shadow-lg shadow-black/5 transition-all duration-500 group-hover:scale-110 group-hover:bg-[#FFAC00] group-hover:text-white">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </div>
               </div>
-
-              {/* Interactive Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/5 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
             </Link>
           ))}
         </div>
