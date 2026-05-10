@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
@@ -23,7 +23,7 @@ export function ChartContainer({
       <div
         className={cn(
           "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-none [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-sector]:outline-none [&_.recharts-surface]:outline-none",
-          className
+          className,
         )}
         {...props}
       >
@@ -48,6 +48,17 @@ export function ChartTooltip({
   );
 }
 
+interface ChartTooltipContentProps {
+  active?: boolean;
+  payload?: Array<any>;
+  label?: any;
+  indicator?: "dot" | "line" | "dashed";
+  hideLabel?: boolean;
+  labelKey?: string;
+  labelFormatter?: (label: any) => React.ReactNode;
+  className?: string;
+}
+
 export function ChartTooltipContent({
   active,
   payload,
@@ -57,12 +68,7 @@ export function ChartTooltipContent({
   labelKey,
   labelFormatter,
   className,
-}: TooltipProps<any, any> & {
-  indicator?: "dot" | "line" | "dashed";
-  hideLabel?: boolean;
-  labelKey?: string;
-  labelFormatter?: (label: any) => React.ReactNode;
-}) {
+}: ChartTooltipContentProps) {
   const { config } = React.useContext(ChartContext) || { config: {} };
 
   if (!active || !payload?.length) {
@@ -73,7 +79,7 @@ export function ChartTooltipContent({
     <div
       className={cn(
         "grid min-w-[8rem] items-start gap-1.5 rounded-xl border border-gray-100 bg-white p-4 shadow-xl text-[10px] font-black uppercase tracking-widest",
-        className
+        className,
       )}
     >
       {!hideLabel && (
@@ -87,15 +93,14 @@ export function ChartTooltipContent({
           const configItem = config[key] || {};
 
           return (
-            <div
-              key={key}
-              className="flex items-center gap-2"
-            >
+            <div key={key} className="flex items-center gap-2">
               <div
                 className="h-2 w-2 rounded-full"
                 style={{ backgroundColor: item.color }}
               />
-              <span className="text-gray-500 uppercase">{configItem.label || key}:</span>
+              <span className="text-gray-500 uppercase">
+                {configItem.label || key}:
+              </span>
               <span className="text-[#111111] font-black ml-auto">
                 {item.value.toLocaleString()}
               </span>
