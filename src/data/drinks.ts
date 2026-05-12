@@ -17,31 +17,30 @@ export const allProducts = [
   { id: 6, title: 'Winter Velvet', price: '$9.00', image: '/multible_boab.png', color: '#4B2C20' },
 ];
 export const ITEMS = [
-  { 
-    id: 1, 
-    title: 'Experience', 
+  {
+    id: 1,
+    title: 'Experience',
     subtitle: 'Pure Vision',
     description: 'Immerse yourself in curated cinematic masterpieces delivered in breathtaking high definition.',
-    image: '/boba_cinematic_1_1777230647935.png',
-    videoUrl: '/videos/kling_20260411_作品_The_drink__5125_0(1).mp4'
+    image: '/boba_lifestyle_portrait_1778329759998.png',
+    videoUrl: '/videos/kling_20260411_作品_The_drink__5125_0(1).mp4',
   },
-  { 
-    id: 2, 
-    title: 'Matcha', 
+  {
+    id: 2,
+    title: 'Matcha',
     subtitle: 'Magic',
     description: 'Discover the vibrant essence of premium ceremonial grade matcha blended to perfection.',
-    image: '/boba_cinematic_2_1777230830032.png',
-    videoUrl: '/videos/kling_20260427_作品_Ultra_real_3097_0.mp4'
+    image: '/boba_store_lifestyle_1778329727033.png',
+    videoUrl: '/videos/kling_20260427_作品_Ultra_real_3097_0.mp4',
   },
-  { 
-    id: 3, 
-    title: 'Taro', 
+  {
+    id: 3,
+    title: 'Taro',
     subtitle: 'Fantasy',
     description: 'Indulge in the velvety smooth texture of our signature taro infusion.',
-    image: '/boba_cinematic_3_1777231030431.png',
-    videoUrl: '/videos/20260427_045908_UTC_0.mp4'
+    image: '/boba_pouring_action_1778329663757.png',
+    videoUrl: '/videos/20260427_045908_UTC_0.mp4',
   },
-  
 ];
 export const DRINKS = [
   {

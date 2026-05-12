@@ -127,13 +127,23 @@ const ProductHero = () => {
                     : 'opacity-40 hover:opacity-80 scale-95'
                 }`}
               >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(min-width: 768px) 16rem, 10rem"
-                  className="object-cover"
-                />
+                {item.videoUrl ? (
+                  <video
+                    src={item.videoUrl}
+                    className="w-full h-full object-cover"
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
+                ) : (
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(min-width: 768px) 16rem, 10rem"
+                    className="object-cover"
+                  />
+                )}
               </button>
             ))}
           </div>
