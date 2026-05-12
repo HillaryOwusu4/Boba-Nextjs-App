@@ -22,7 +22,7 @@ export const ITEMS = [
     title: 'Experience',
     subtitle: 'Pure Vision',
     description: 'Immerse yourself in curated cinematic masterpieces delivered in breathtaking high definition.',
-    image: '/boba_lifestyle_portrait_1778329759998.png',
+    image: '/a.PNG',
     videoUrl: '/videos/kling_20260411_作品_The_drink__5125_0(1).mp4',
   },
   {
@@ -30,7 +30,7 @@ export const ITEMS = [
     title: 'Matcha',
     subtitle: 'Magic',
     description: 'Discover the vibrant essence of premium ceremonial grade matcha blended to perfection.',
-    image: '/boba_store_lifestyle_1778329727033.png',
+    image: '/m,.PNG',
     videoUrl: '/videos/kling_20260427_作品_Ultra_real_3097_0.mp4',
   },
   {
@@ -38,7 +38,7 @@ export const ITEMS = [
     title: 'Taro',
     subtitle: 'Fantasy',
     description: 'Indulge in the velvety smooth texture of our signature taro infusion.',
-    image: '/boba_pouring_action_1778329663757.png',
+    image: '/are.PNG',
     videoUrl: '/videos/20260427_045908_UTC_0.mp4',
   },
 ];
