@@ -38,7 +38,7 @@ export default function ActionGroup({ isDarkBackground, isOpen }: { isDarkBackgr
       <Button 
         variant="secondary" 
         className={secondaryBorderOutline}
-        icon="/bobadrinks/1 (2).png"
+        icon="/boba_lifestyle_portrait_1778329759998.png"
       >
         Login
       </Button>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useSyncExternalStore } from 'react';
 import gsap from 'gsap';
 import { useCartStore } from '@/store/useCartStore';
 import { X, Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
@@ -13,16 +13,10 @@ export default function CartDrawer() {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
 
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const drawerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const totalPrice = getTotalPrice();
-
-
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     const lenis = (window as any).lenis;

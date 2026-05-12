@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 import CartDrawer from "@/components/CartDrawer";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import PageLoader from "@/components/PageLoader";
 
 export default function RootLayout({
   children,
@@ -22,6 +23,7 @@ export default function RootLayout({
       className={`${fontThemeClassName} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <PageLoader />
         <SmoothScrollProvider />
         <NavWrapper>
           {children}

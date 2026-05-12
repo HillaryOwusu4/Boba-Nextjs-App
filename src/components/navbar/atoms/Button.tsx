@@ -21,8 +21,8 @@ export default function Button({
   return (
     <button className={`relative z-[70] hidden md:flex items-center justify-center  pl-1.5 pr-6 py-1.5 border border-gray-300 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-black font-medium text-sm md:text-base rounded-full transition-all duration-200 ${className}`}>
       {icon && (
-        <div className="w-10 h-10 rounded-full bg-gray-200 mr-3 overflow-hidden p-[20px] flex items-center justify-center">
-          <img src={icon} alt="Van" className="w-full h-full object-cover" />
+        <div className="w-10 h-10 rounded-full bg-gray-200 mr-3 overflow-hidden flex items-center justify-center">
+          <img src={icon} alt="" className="w-full h-full object-cover" />
         </div>
       )}
       {children}
