@@ -35,13 +35,15 @@ export default function ActionGroup({ isDarkBackground, isOpen }: { isDarkBackgr
         )}
       </button>
 
-      <Button 
-        variant="secondary" 
-        className={secondaryBorderOutline}
-        icon="/boba_lifestyle_portrait_1778329759998.png"
-      >
-        Login
-      </Button>
+      <a href="/sign-in">
+        <Button
+          variant="secondary"
+          className={secondaryBorderOutline}
+          icon="/boba_lifestyle_portrait_1778329759998.png"
+        >
+          Login
+        </Button>
+      </a>
     </div>
   );
 }

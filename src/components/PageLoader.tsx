@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function PageLoader() {
-  const isClient = useSyncExternalStore(() => () => {}, () => true, () => false);
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -34,7 +33,7 @@ export default function PageLoader() {
     setTimeout(tick, 150);
   }, []);
 
-  if (!isClient || done) return null;
+  if (done) return null;
 
   return (
     <div

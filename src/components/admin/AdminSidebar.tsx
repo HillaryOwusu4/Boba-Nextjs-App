@@ -3,9 +3,11 @@
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, ShoppingBag, Package, Users, Settings, LogOut, Coffee, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
+import { useClerk } from '@clerk/nextjs';
 
 export default function AdminSidebar() {
   const pathname = usePathname();
+  const { signOut } = useClerk();
 
   const links = [
     { label: 'Analytics', href: '/admin/analytics', icon: LayoutDashboard },
@@ -55,7 +57,10 @@ export default function AdminSidebar() {
 
       {/* Footer Settings */}
       <div className="p-4 border-t border-gray-100">
-        <button className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300 font-bold text-sm text-gray-500 hover:bg-red-50 hover:text-red-600 w-full">
+        <button
+          onClick={() => signOut({ redirectUrl: '/sign-in' })}
+          className="flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300 font-bold text-sm text-gray-500 hover:bg-red-50 hover:text-red-600 w-full"
+        >
           <LogOut className="w-5 h-5 text-gray-400 group-hover:text-red-500" />
           Sign Out
         </button>
