@@ -18,7 +18,7 @@ export default function CartDrawer() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const totalPrice = getTotalPrice();
 
-  console.log('CartDrawer items:', items);
+
 
   useEffect(() => {
     setMounted(true);
@@ -57,7 +57,7 @@ export default function CartDrawer() {
               <div className="w-10 h-10 rounded-xl bg-[var(--color-lemon)]/20 flex items-center justify-center border border-[var(--color-lemon)]/30">
                 <ShoppingBag className="text-[var(--color-charcoal)] w-5 h-5" />
               </div>
-              <h2 className="text-2xl font-bold text-[var(--color-charcoal)] tracking-tight uppercase" style={{ fontFamily: 'Impact, sans-serif' }}>Your Cart</h2>
+              <h2 className="text-2xl font-black text-[var(--color-charcoal)] tracking-tight uppercase" style={{ fontFamily: 'var(--font-sans)' }}>Your Cart</h2>
             </div>
             <button onClick={() => setIsCartOpen(false)} className="p-2 rounded-full hover:bg-black/5 text-neutral-400 hover:text-[var(--color-charcoal)] transition-colors">
               <X className="w-6 h-6" />

@@ -36,7 +36,7 @@ export default function BrandStatement() {
           <span className="px-4 py-1.5 bg-[#FAFAFA] border border-gray-100 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] mb-6 inline-block shadow-sm">
             Our Promise
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-6 text-[#111111]">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-6 text-[#111111]" style={{ fontFamily: 'var(--font-sans)' }}>
             Quality Course, <br /> Confident Sip.
           </h2>
           <p className="text-gray-500 text-base md:text-lg leading-relaxed mb-8">

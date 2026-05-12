@@ -80,7 +80,7 @@ export default function NewArrivalsSection() {
           <span className="px-5 py-2 bg-white border border-gray-100 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] shadow-sm mb-6 inline-block">
              Latest Drops
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-[#111111] uppercase">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-[#111111] uppercase" style={{ fontFamily: 'var(--font-sans)' }}>
             New Arrivals
           </h2>
           <div className="w-16 h-px bg-gray-300 my-6"></div>
@@ -116,7 +116,7 @@ export default function NewArrivalsSection() {
 
               {/* Text Info */}
               <div className="text-center flex flex-col items-center">
-                <h3 className="text-sm font-bold text-[#111111] uppercase tracking-widest mb-2 transition-colors duration-300 group-hover:text-[#FFAC00]">
+                <h3 className="text-sm font-bold text-[#111111] uppercase tracking-widest mb-2 transition-colors duration-300 group-hover:text-[#FFAC00]" style={{ fontFamily: 'var(--font-sans)' }}>
                   {item.title}
                 </h3>
                 

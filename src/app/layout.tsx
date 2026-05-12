@@ -1,24 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Arvo } from "next/font/google";
 import "./globals.css";
 import NavWrapper from "@/components/NavWrapper";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-// Slab-serif display font for bold headers
-const arvo = Arvo({
-  variable: "--font-arvo",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
+import { fontThemeClassName } from "@/theme/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,7 +19,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${arvo.variable} h-full antialiased`}
+      className={`${fontThemeClassName} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <SmoothScrollProvider />

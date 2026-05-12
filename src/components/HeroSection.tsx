@@ -310,7 +310,7 @@ export default function HeroSection() {
             clipPath:  'inset(0 33vw 0 33vw)',   /* show centre 34 vw  */
           }}
         >
-          Daddy Boba
+          cafedeboba
         </h1>
 
         {/* ── Layer 2 (middle) — Loading counter ────── */}
@@ -366,7 +366,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ── Layer 3 (front) — Daddy Boba left wing ─────
+        {/* ── Layer 3 (front) — CafeDeboba left wing ─────
             Shows the left 33 vw — these letters sit
             visually IN FRONT of the counter           */}
         <div
@@ -378,10 +378,10 @@ export default function HeroSection() {
             clipPath:      'inset(0 67vw 0 0)',    /* keep left  33 vw  */
           }}
         >
-          <h1 className="welcome-clone" style={welcomeStyle}>Daddy Boba</h1>
+          <h1 className="welcome-clone" style={welcomeStyle}>cafedeboba</h1>
         </div>
 
-        {/* ── Layer 3 (front) — Daddy Boba right wing ────
+        {/* ── Layer 3 (front) — cafedeboba right wing ────
             Shows the right 33 vw — same front layer   */}
         <div
           style={{
@@ -392,7 +392,7 @@ export default function HeroSection() {
             clipPath:      'inset(0 0 0 67vw)',    /* keep right 33 vw  */
           }}
         >
-          <h1 className="welcome-clone" style={welcomeStyle}>Daddy Boba</h1>
+          <h1 className="welcome-clone" style={welcomeStyle}>cafedeboba</h1>
         </div>
       </div>
 

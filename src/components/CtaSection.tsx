@@ -78,9 +78,9 @@ export default function CtaSection() {
         </span>
 
         <h2 className="text-[4rem] sm:text-[6rem] md:text-[9rem] lg:text-[11rem] font-black tracking-tight leading-[0.85] mb-12 uppercase drop-shadow-xl">
-          <span className="cta-line-1 inline-block text-[var(--color-snow)]">GET YOUR</span>
+          <span className="cta-line-1 inline-block text-[var(--color-snow)]" style={{ fontFamily: 'var(--font-sans)' }}>GET YOUR</span>
           <br />
-          <span className="cta-line-2 inline-block text-[var(--color-lemon)]">CRAVING</span>
+          <span className="cta-line-2 inline-block text-[var(--color-lemon)]" style={{ fontFamily: 'var(--font-sans)' }}>CRAVING</span>
         </h2>
 
         <p className="cta-paragraph text-[var(--color-neutral-300)] max-w-2xl mx-auto text-lg md:text-2xl font-medium mb-16 leading-relaxed">

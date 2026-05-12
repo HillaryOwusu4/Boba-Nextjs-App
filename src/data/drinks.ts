@@ -10,10 +10,10 @@ export interface Nutrition {
   protein: number;
 }
 export const allProducts = [
-  { id: 1, title: 'Classic Brew', price: '$8.00', image: '/one_boba.png', color: '#F4F1EA' },
+  { id: 1, title: 'Classic Brew', price: '$8.00', image: '/multible_boab.png', color: '#F4F1EA' },
   { id: 2, title: 'Daddy Signature', price: '$7.50', image: '/multible_boab.png', color: '#1A1A1A' },
-  { id: 3, title: 'Vintage Burst', price: '$8.50', image: '/one_boba.png', color: '#E64833' },
-  { id: 5, title: 'Summer Pop', price: '$7.00', image: '/one_boba.png', color: '#FFAC00' },
+  { id: 3, title: 'Vintage Burst', price: '$8.50', image: '/multible_boab.png', color: '#E64833' },
+  { id: 5, title: 'Summer Pop', price: '$7.00', image: '/multible_boab.png', color: '#FFAC00' },
   { id: 6, title: 'Winter Velvet', price: '$9.00', image: '/multible_boab.png', color: '#4B2C20' },
 ];
 export const ITEMS = [

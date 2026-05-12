@@ -56,7 +56,7 @@ export default function BobaEssentialsSection() {
               Level Up
             </span>
             
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#111111] leading-[1.05] mb-6 uppercase">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#111111] leading-[1.05] mb-6 uppercase" style={{ fontFamily: 'var(--font-sans)' }}>
               Shop Premium <br /> Boba Essentials
             </h2>
             

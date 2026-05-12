@@ -81,7 +81,7 @@ export default function MapSection() {
               <Navigation className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-black text-[#111111] uppercase tracking-wider text-xs">Flagship Lab</h3>
+              <h3 className="font-black text-[#111111] uppercase tracking-wider text-xs" style={{ fontFamily: 'var(--font-sans)' }}>Flagship Lab</h3>
               <p className="text-gray-500 text-[10px] font-bold tracking-widest uppercase">Las Vegas, NV</p>
             </div>
           </div>
@@ -126,8 +126,8 @@ export default function MapSection() {
 
         {/* Branding Watermark */}
         <div className="absolute top-8 right-8 z-20 pointer-events-none">
-          <div className="bg-[#0a0a0a] text-white px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] opacity-80 backdrop-blur-md border border-white/10">
-            Daddy Boba HQ
+          <div className="bg-[#0a0a0a] text-white px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] opacity-80 backdrop-blur-md border border-white/10" style={{ fontFamily: 'var(--font-sans)' }}>
+            CafeDeboba HQ
           </div>
         </div>
 

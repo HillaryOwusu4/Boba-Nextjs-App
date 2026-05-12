@@ -36,11 +36,11 @@ export default function AboutSection() {
           <span className="px-5 py-2 bg-[#FAFAFA] border border-gray-100 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] mb-6 inline-block shadow-sm">
             Professional Guidance
           </span>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#111111] mb-6">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#111111] mb-6" style={{ fontFamily: 'var(--font-sans)' }}>
             A Legacy in Every Cup
           </h2>
           <p className="text-gray-500 font-medium leading-relaxed max-w-2xl mx-auto">
-            Founded to revolutionize the street beverage experience, Daddy Boba is a premier producer of intensely refreshing and customized creations, committed to delivering high-quality products that meet modern consumer desires.
+            Founded to revolutionize the street beverage experience, CafeDeboba is a premier producer of intensely refreshing and customized creations, committed to delivering high-quality products that meet modern consumer desires.
           </p>
         </div>
 
@@ -51,7 +51,7 @@ export default function AboutSection() {
             <img src="/boba_store_lifestyle_1778329727033.png" alt="Store Interior" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent"></div>
             <div className="absolute bottom-6 left-6 right-6 z-10">
-              <h3 className="text-white font-bold text-xl mb-1 drop-shadow-md">Elegant Café</h3>
+              <h3 className="text-white font-bold text-xl mb-1 drop-shadow-md" style={{ fontFamily: 'var(--font-sans)' }}>Elegant Café</h3>
               <p className="text-white/90 text-sm font-medium drop-shadow">A modern space designed for your comfort and aesthetic pleasure.</p>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function AboutSection() {
             <div className="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-6">
               <span className="text-2xl">🌍</span>
             </div>
-            <h3 className="text-[#111111] font-bold text-xl mb-4">Global Vision</h3>
+            <h3 className="text-[#111111] font-bold text-xl mb-4" style={{ fontFamily: 'var(--font-sans)' }}>Global Vision</h3>
             <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-8">
               The company aims to expand internationally and become a legendary fixture in the mobile beverage sector, uniting flavors globally.
             </p>
@@ -75,7 +75,7 @@ export default function AboutSection() {
             <img src="/boba_lifestyle_portrait_1778329759998.png" alt="Lifestyle Portrait" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/80 via-transparent to-transparent"></div>
             <div className="absolute bottom-6 left-6 right-6 z-10">
-              <h3 className="text-white font-bold text-xl mb-1 drop-shadow-md">Happy Customers</h3>
+              <h3 className="text-white font-bold text-xl mb-1 drop-shadow-md" style={{ fontFamily: 'var(--font-sans)' }}>Happy Customers</h3>
               <p className="text-white/90 text-sm font-medium drop-shadow">Smiles served daily with every customized premium cup.</p>
             </div>
           </div>

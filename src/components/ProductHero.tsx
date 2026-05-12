@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ITEMS } from '@/data/drinks';
 
@@ -72,6 +73,8 @@ const ProductHero = () => {
             autoPlay
             muted
             playsInline
+            preload="metadata"
+            poster={activeItem.image}
             onEnded={() => setActiveIndex((prev) => (prev + 1) % ITEMS.length)}
             className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000"
           />
@@ -124,20 +127,13 @@ const ProductHero = () => {
                     : 'opacity-40 hover:opacity-80 scale-95'
                 }`}
               >
-                {item.videoUrl ? (
-                  <video
-                    src={item.videoUrl}
-                    className="w-full h-full object-cover"
-                    muted
-                    playsInline
-                  />
-                ) : (
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                )}
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(min-width: 768px) 16rem, 10rem"
+                  className="object-cover"
+                />
               </button>
             ))}
           </div>

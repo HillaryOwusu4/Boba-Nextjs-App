@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { fontVars } from '@/theme/fonts';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -40,6 +41,7 @@ const collections = [
 
 export default function CollectionsSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const sansFont = fontVars.sans;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -110,14 +112,14 @@ export default function CollectionsSection() {
     <section id="shop-collections" ref={sectionRef} className="py-24 bg-white overflow-hidden">
       <div className="w-full px-[clamp(1.5rem,5vw,4rem)]">
         <div className="text-center mb-16 flex flex-col items-center section-header">
-          <span className="px-5 py-2 bg-white border border-gray-100 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] shadow-sm mb-6 inline-block">
+          <span className="px-5 py-2 bg-white border border-gray-100 rounded-full text-xs font-bold uppercase tracking-widest text-[#FFAC00] shadow-sm mb-6 inline-block" style={{ fontFamily: sansFont }}>
              Drink Series
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tight text-[#111111] uppercase">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-[#111111] uppercase" style={{ fontFamily: sansFont }}>
             Collections
           </h2>
           <div className="w-16 h-px bg-gray-300 my-6"></div>
-          <p className="text-gray-500 font-medium text-lg">
+          <p className="text-gray-500 font-medium text-lg" style={{ fontFamily: sansFont }}>
             Explore our curated drink series and find your perfect boba match
           </p>
         </div>
@@ -141,10 +143,10 @@ export default function CollectionsSection() {
 
               {/* Top-Left Label Area - Kept exact shape styling! */}
               <div className="absolute top-0 left-0 bg-white pt-7 pl-7 pb-4 pr-10 rounded-br-[2.4rem] z-20">
-                <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ fontFamily: sansFont }}>
                   {item.category}
                 </div>
-                <h3 className="text-[1.35rem] font-bold text-black leading-[1.1] tracking-tight">
+                <h3 className="text-[1.35rem] font-bold text-black leading-[1.1] tracking-tight" style={{ fontFamily: sansFont }}>
                   {item.title.split(' ').map((word, i) => (
                     <span key={i} className="block overflow-hidden">
                       <span className="block card-title-line">
@@ -175,7 +177,7 @@ export default function CollectionsSection() {
 
               {/* Bottom-Left Subtitle Area - Rebalanced colors for image-centric setup */}
               <div className="absolute bottom-0 left-0 bg-white pt-3 pl-8 pb-7 pr-8 rounded-tr-[2.2rem] z-20 card-subtitle">
-                <p className="text-[0.95rem] font-bold text-[#FFAC00] tracking-tight">
+                <p className="text-[0.95rem] font-bold text-[#FFAC00] tracking-tight" style={{ fontFamily: sansFont }}>
                   {item.subTitle}
                 </p>
                 {/* Concave Corner Connections (Bottom-Right of Tab) */}

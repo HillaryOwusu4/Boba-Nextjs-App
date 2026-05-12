@@ -9,8 +9,10 @@ import Figure, { lerpNum } from './Figure';
 import MobileCard from './MobileCard';
 import { ReactLenis } from 'lenis/react';
 import gsap from 'gsap';
+import { fontVars } from '@/theme/fonts';
 
 function CollectionContent() {
+  const sansFont = fontVars.sans;
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category');
   
@@ -55,7 +57,7 @@ function CollectionContent() {
 
   // GSAP animation for the CTA button bounce
   useEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       if (ctaBtnRef.current) {
         gsap.to(ctaBtnRef.current, {
           y: -6,
@@ -97,10 +99,10 @@ function CollectionContent() {
         {/* ── Mobile / Tablet card grid (hidden on lg+) ── */}
         <div className="lg:hidden pt-24 pb-16 px-[clamp(1.5rem,5vw,4rem)] bg-white min-h-screen">
           <div className="mb-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
+            <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2" style={{ fontFamily: sansFont }}>
               {categoryParam ? `The ${categoryParam} Collection` : 'Available in multiple bottle sizes'}
             </p>
-            <h1 className="font-black text-4xl sm:text-5xl uppercase tracking-tight text-[#111111] leading-[1.05]">
+            <h1 className="font-black text-4xl sm:text-5xl uppercase tracking-tight text-[#111111] leading-[1.05]" style={{ fontFamily: sansFont }}>
               {categoryParam || 'Collections'}
             </h1>
           </div>
@@ -141,16 +143,16 @@ function CollectionContent() {
                   pointerEvents: introOpacity > 0.5 ? 'auto' : 'none',
                 }}
               >
-                <p className="text-[11px] font-bold tracking-[0.28em] uppercase text-gray-400 mb-4">
+                <p className="text-[11px] font-bold tracking-[0.28em] uppercase text-gray-400 mb-4" style={{ fontFamily: sansFont }}>
                   {categoryParam ? `The ${categoryParam} Collection` : 'Available in multiple bottle sizes'}
                 </p>
                 <h1 
                   className="font-black tracking-tight leading-[0.9] uppercase text-[#111111] whitespace-nowrap"
-                  style={{ fontSize: 'clamp(40px, 6.5vw, 100px)' }}
+                  style={{ fontSize: 'clamp(40px, 6.5vw, 100px)', fontFamily: sansFont }}
                 >
                   {categoryParam || 'Collections'}
                 </h1>
-                <p className="mt-6 max-w-[45vw] text-[17px] leading-relaxed text-gray-500 font-medium">
+                <p className="mt-6 max-w-[45vw] text-[17px] leading-relaxed text-gray-500 font-medium" style={{ fontFamily: sansFont }}>
                   {categoryParam 
                     ? `Discover our exclusive selection of ${categoryParam} drinks, each crafted with premium ingredients and our signature artistic touch.`
                     : 'Nine drinks, drawn from a winter of slow afternoons — brown sugar, matcha, taro and stone fruit; each one a small ritual built around boba, foam, and the steady architecture of a paper cup.'
@@ -167,13 +169,14 @@ function CollectionContent() {
                   pointerEvents: drinkHeadOpacity > 0.5 ? 'auto' : 'none',
                 }}
               >
-                <p className="text-[11px] font-bold tracking-[0.28em] mt-5 uppercase text-gray-400 mb-4">
+                <p className="text-[11px] font-bold tracking-[0.28em] mt-5 uppercase text-gray-400 mb-4" style={{ fontFamily: sansFont }}>
                   {categoryParam ? `The ${categoryParam} Collection` : 'Available in multiple bottle sizes'}
                 </p>
                 <h1
                   className="font-black w-[250px] tracking-tight leading-[0.95] uppercase text-[#111111] will-change-transform"
                   style={{
                     fontSize: 'clamp(44px, 6vw, 84px)',
+                    fontFamily: sansFont,
                     opacity: titleOpacity,
                     transform: `translateY(${titleY}px)`,
                   }}
@@ -184,6 +187,7 @@ function CollectionContent() {
                 <p
                   className="mt-4 text-[16px] leading-relaxed text-gray-500 font-medium max-w-[38vw] will-change-transform"
                   style={{
+                    fontFamily: sansFont,
                     opacity: titleOpacity,
                     transform: `translateY(${titleY * 0.4}px)`,
                   }}
@@ -202,6 +206,7 @@ function CollectionContent() {
                     className="font-black tracking-tight leading-[0.9] uppercase mb-[30px]"
                     style={{
                       fontSize: 'clamp(60px, 8vw, 100px)',
+                      fontFamily: sansFont,
                       color: activeDrink.buttonColor,
                     }}
                   >

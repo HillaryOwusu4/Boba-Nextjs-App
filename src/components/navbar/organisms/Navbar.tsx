@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import HamburgerIcon from '../atoms/HamburgerIcon';
 import Logo from '../atoms/Logo';
@@ -29,14 +29,17 @@ export default function Navbar() {
   // but scrolled down becomes white. For this replica, we assume scrolled = white bg.
   const isDarkBackground = !effectivelyScrolled && !isOpen;
 
-  // We need to disable body scroll when menu is open
-  if (typeof window !== 'undefined') {
+  useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   return (
     <>
